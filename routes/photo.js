@@ -6,11 +6,17 @@ const {
   getPhotosByPlace,
   deletePhoto,
 } = require("../controllers/photoController");
-
+const path = require("path");
 const storage = multer.diskStorage({
   destination: "./uploads/",
-  filename: (req, file, cb) => cb(null, Date.now() + "_" + file.originalname),
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname); // .jpg, .png 등 확장자
+    const uniqueName =
+      Date.now() + "_" + Math.random().toString(36).substring(2, 10) + ext;
+    cb(null, uniqueName);
+  },
 });
+
 const upload = multer({ storage });
 
 // 사진 업로드
