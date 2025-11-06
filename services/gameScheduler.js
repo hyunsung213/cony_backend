@@ -6,7 +6,7 @@ const { Op } = require("sequelize");
 async function createDailyGames() {
   try {
     const today = dayjs().format("YYYY-MM-DD");
-    const gameTime = "20:00"; // 기본 시작 시간
+    const gameTime = "11:00"; // 기본 시작 시간
     const datetime = dayjs(`${today} ${gameTime}`).toDate();
     console.log(`[게임 자동생성] ${today} 날짜 기준 실행 중...`);
 
