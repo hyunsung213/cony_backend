@@ -67,7 +67,11 @@ exports.createPayment = async (req, res) => {
       // 게임 정보
       const gameInfo = `🎮 **게임 정보**\n- 게임 ID: ${gameId}\n- 날짜: ${new Date(
         game.date
-      ).toLocaleString()}\n- 최대 인원: ${game.numOfMember}`;
+      ).toLocaleString("ko-KR", {
+        dateStyle: "short",
+        timeStyle: "short",
+        timeZone: "Asia/Seoul", // 한국 시간대 고정
+      })}\n- 최대 인원: ${game.numOfMember}`;
 
       // 장소 정보
       const placeInfo = `📍 **장소 정보**\n- 장소 이름: ${
@@ -130,6 +134,7 @@ exports.confirmPayment = async (req, res) => {
         ? new Date(game.date).toLocaleString("ko-KR", {
             dateStyle: "short",
             timeStyle: "short",
+            timeZone: "Asia/Seoul", // 한국 시간대 고정
           })
         : "일시 미정";
 
